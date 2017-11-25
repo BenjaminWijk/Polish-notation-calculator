@@ -15,34 +15,40 @@ public class PolishNotation {
     private Stack<Operator> operatorStack;
     private Stack<Operand> operandStack;
 
+    public List<String> cases;
 
     PolishNotation() { }
 
     /**
-     * Reads input from System.in line for line, performs infix to PN on each line and prints out the results.
+     * Reads input from an InputStream line for line, performs infix to PN on each line and prints out the results.
      */
     public void readStreamInput(InputStream in) {
         try (Scanner caseScanner = new Scanner(in)){
-            int caseCounter = 1;
+            cases = new ArrayList<>();
             String calculation;
 
             while (caseScanner.hasNext()) {
                 String input = caseScanner.nextLine();
                 calculation = computeInput(input);
 
-                System.out.println("Case " + caseCounter++ + ": " + calculation);
+                addCase(calculation);
             }
+
         }
     }
 
+    /**
+     * Same as readStreamInput, but reads strings instead of a stream.
+     * @param in
+     */
     public void readStringInput(String... in){
-        int caseCounter = 1;
+        cases = new ArrayList<>();
         String calculation;
+        String output;
 
         for(String s: in){
             calculation = computeInput(s);
-
-            System.out.println("Case " + caseCounter++ + ": " + calculation);
+            addCase(calculation);
         }
     }
 
@@ -80,8 +86,10 @@ public class PolishNotation {
 
         //If "last" part of expression resolved, pop operandstack
         if (!operandStack.isEmpty()) {
-            if(!outputStack.isEmpty())
+            if(!outputStack.isEmpty()) {
                 System.out.println("outputstack not empty");
+                return null;
+            }
             sj.add(operandStack.pop().toString());
         }
         while (!outputStack.isEmpty()) {
@@ -93,18 +101,50 @@ public class PolishNotation {
     }
 
     /**
+     * Adds cases to be printed on System.out
+     * @param calculatedInput
+     */
+    private void addCase(String calculatedInput){
+        cases.add(calculatedInput);
+    }
+
+    private void printCases(){
+        int caseCounter = 1;
+        for(String s: cases){
+            System.out.println("Case " + caseCounter++ + ": " + s);
+        }
+    }
+
+    /**
+     * for testing purposes only
+     * @return
+     */
+    public String getCasesAsString(){
+        int caseCounter = 1;
+
+        StringJoiner sj = new StringJoiner("\n");
+        for(String s: cases){
+            sj.add("Case " + caseCounter++ + ": " + s);
+        }
+
+        return sj.toString();
+    }
+
+    /**
      * The commented code is just used for some lazy testing.
      * @param args
      */
     public static void main(String[] args) {
        PolishNotation pn = new PolishNotation();
 
+
+
         try {
             pn.readStreamInput(new FileInputStream(new File("testPN.txt")));
+            pn.printCases();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
 
     }
 }
