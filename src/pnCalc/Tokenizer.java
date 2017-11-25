@@ -15,12 +15,12 @@ import java.util.Stack;
  class Tokenizer {
     Stack<Token> stack = new Stack<>();
 
-    Tokenizer(String[] in) {
+    Tokenizer() {}
+
+    Stack<Token> getTokenizedStack(String [] in) {
         for (String s : in)
             stack.push(getToken(s));
-    }
 
-    Stack<Token> getTokenizedStack() {
         return stack;
     }
 
