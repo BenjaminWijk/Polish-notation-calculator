@@ -54,7 +54,7 @@ public class PolishNotation {
     private String computeInput(String in){
         Tokenizer tokenizer = new Tokenizer();
         Stack<Token> tokens = tokenizer.getTokenizedStack(in);
-        
+
         String calculation = calculatePN(tokens);
 
         return calculation;
@@ -62,9 +62,6 @@ public class PolishNotation {
 
     /**
      * Takes a stack of tokens and performs polish notation calculations.
-     *
-     * @param stack
-     * @return
      */
     private String calculatePN(Stack<Token> stack) {
         operatorStack = new Stack<>();
@@ -134,7 +131,6 @@ public class PolishNotation {
      */
     public static void main(String[] args) {
        PolishNotation pn = new PolishNotation();
-       pn.readStreamInput(System.in);
 
         /*try {
             pn.readStreamInput(new FileInputStream(new File("testPN.txt")));

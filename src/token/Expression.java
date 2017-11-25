@@ -16,6 +16,7 @@ public class Expression implements Token{
         this.o2 = o2;
 
         rawValue = op.toString() + " " + o1.toString() + " " + o2.toString();
+
     }
 
     private boolean canSimplifyExpression() {
@@ -23,7 +24,7 @@ public class Expression implements Token{
                 o2 instanceof Constant;
     }
 
-    void performOperation() {
+    private void performOperation() {
         if (canSimplifyExpression()) {
             switch (op.getValue()) {
                 case "*":

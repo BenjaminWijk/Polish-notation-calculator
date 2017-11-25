@@ -146,9 +146,8 @@ class PolishNotationTest extends GroovyTestCase {
         int counter = 0;
         Stack<Token> stack;
 
-        Tokenizer tokenizer = new Tokenizer(s.split(" "));
-
-        stack = tokenizer.getTokenizedStack()
+        Tokenizer tokenizer = new Tokenizer();
+        stack = tokenizer.getTokenizedStack(s)
 
         while(!stack.isEmpty()){
             Token t = stack.pop();
