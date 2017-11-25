@@ -20,6 +20,18 @@ class PolishNotationTest extends GroovyTestCase {
 
         assertEquals("Case 1: 7\nCase 2: - x x\nCase 3: * - 6 + x -6 - 3 * 0 c", pn.getCasesAsString())
 
+        pn.readStringInput("- + - 3 4 - x x + 3 5")
+        assertEquals("Case 1: - + -1 - x x 8", pn.getCasesAsString())
+
+        pn.readStringInput("- + - x c * 5 b - 3 4")
+        assertEquals("Case 1: - + - x c * 5 b -1", pn.getCasesAsString())
+
+        pn.readStringInput("- * + 3 4 * 5 4 - - 3 3 * 4 5")
+        assertEquals("Case 1: 160", pn.getCasesAsString())
+
+        pn.readStringInput("- * + 3 4 * 5 x - - 3 3 * 4 5")
+        assertEquals("Case 1: - * 7 * 5 x -20", pn.getCasesAsString())
+
     }
 
     void testPN(){
@@ -32,7 +44,6 @@ class PolishNotationTest extends GroovyTestCase {
             }
             pn.readStringInput(cases)
             println pn.getCasesAsString()
-
 
             for(String s:pn.cases){
                if(s == null)
@@ -142,15 +153,15 @@ class PolishNotationTest extends GroovyTestCase {
         while(!stack.isEmpty()){
             Token t = stack.pop();
 
-            if (t instanceof Operand)
+            if (t instanceof Operand) {
                 counter++;
+            }
             if (t instanceof Operator){
                 counter -= 2;
                 if(counter < 0)
                     return false;
                 counter++;
             }
-
             if(counter < 0){
                 return false;
             }
