@@ -4,8 +4,6 @@ import token.Operand;
 import token.Operator;
 import token.Token;
 
-import java.io.File;
-
 import java.io.*;
 import java.util.*;
 
@@ -15,12 +13,13 @@ public class PolishNotation {
     private Stack<Operator> operatorStack;
     private Stack<Operand> operandStack;
 
-    public List<String> cases;
+    private List<String> cases;
 
-    PolishNotation() { }
+    public PolishNotation() { }
 
     /**
-     * Reads input from an InputStream line for line, performs infix to PN on each line and prints out the results.
+     * Reads a polish notation expression from an InputStream line for line, tokenizes on each line and prints out the results.
+     * @param in Inputstream of valid Polish notation
      */
     public void readStreamInput(InputStream in) {
         try (Scanner caseScanner = new Scanner(in)){
@@ -33,7 +32,6 @@ public class PolishNotation {
 
                 addCase(calculation);
             }
-
         }
     }
 
@@ -52,12 +50,12 @@ public class PolishNotation {
         }
     }
 
-    private String computeInput(String in){
-        Tokenizer tokenizer = new Tokenizer(in.split(" "));
-        Stack<Token> tokens = tokenizer.getTokenizedStack();
 
-        String calculation;
-        calculation = calculatePN(tokens);
+    private String computeInput(String in){
+        Tokenizer tokenizer = new Tokenizer();
+        Stack<Token> tokens = tokenizer.getTokenizedStack(in);
+        
+        String calculation = calculatePN(tokens);
 
         return calculation;
     }
@@ -136,15 +134,14 @@ public class PolishNotation {
      */
     public static void main(String[] args) {
        PolishNotation pn = new PolishNotation();
+       pn.readStreamInput(System.in);
 
-
-
-        try {
+        /*try {
             pn.readStreamInput(new FileInputStream(new File("testPN.txt")));
             pn.printCases();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
+        */
     }
 }

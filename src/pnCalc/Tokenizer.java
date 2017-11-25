@@ -17,9 +17,9 @@ import java.util.Stack;
 
     Tokenizer() {}
 
-    Stack<Token> getTokenizedStack(String [] in) {
-        for (String s : in)
-            stack.push(getToken(s));
+    Stack<Token> getTokenizedStack(String in) {
+        for (String t : in.split(" "))
+            stack.push(getToken(t));
 
         return stack;
     }
