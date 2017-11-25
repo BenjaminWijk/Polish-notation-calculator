@@ -26,15 +26,16 @@ public class Expression implements Token{
 
     private void performOperation() {
         if (canSimplifyExpression()) {
+
             switch (op.getValue()) {
                 case "*":
-                    simplifiedValue = (int) o1.getValue() * (int) o2.getValue();
+                    simplifiedValue = (Integer) o1.getValue() * (Integer) o2.getValue();
                     break;
                 case "-":
-                    simplifiedValue = (int) o1.getValue() - (int) o2.getValue();
+                    simplifiedValue = (Integer) o1.getValue() - (Integer) o2.getValue();
                     break;
                 case "+":
-                    simplifiedValue = (int) o1.getValue() + (int) o2.getValue();
+                    simplifiedValue = (Integer) o1.getValue() + (Integer) o2.getValue();
                     break;
                 default:
                     System.out.println("If you got this message, you've somehow used an unsupported operator");

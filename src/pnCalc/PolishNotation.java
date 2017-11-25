@@ -131,13 +131,15 @@ public class PolishNotation {
      */
     public static void main(String[] args) {
        PolishNotation pn = new PolishNotation();
+       Scanner sc = new Scanner(System.in);
 
-        /*try {
-            pn.readStreamInput(new FileInputStream(new File("testPN.txt")));
-            pn.printCases();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        */
+       while(true){
+           String s = sc.nextLine();
+
+
+
+
+
+       }
     }
 }
