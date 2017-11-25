@@ -15,35 +15,45 @@ public class PolishNotation {
     private Stack<Operator> operatorStack;
     private Stack<Operand> operandStack;
 
-    private InputStream in;
 
-    PolishNotation(InputStream in) {
-        this.in = in;
-
-        readInput();
-    }
+    PolishNotation() { }
 
     /**
      * Reads input from System.in line for line, performs infix to PN on each line and prints out the results.
      */
-    private void readInput() {
-        int caseCounter = 1;
-
+    public void readStreamInput(InputStream in) {
         try (Scanner caseScanner = new Scanner(in)){
+            int caseCounter = 1;
+            String calculation;
 
             while (caseScanner.hasNext()) {
                 String input = caseScanner.nextLine();
-
-                Tokenizer tokenizer = new Tokenizer(input.split(" "));
-                Stack<Token> tokens = tokenizer.getTokenizedStack();
-
-                String calculation;
-                calculation = calculatePN(tokens);
+                calculation = computeInput(input);
 
                 System.out.println("Case " + caseCounter++ + ": " + calculation);
             }
-
         }
+    }
+
+    public void readStringInput(String... in){
+        int caseCounter = 1;
+        String calculation;
+
+        for(String s: in){
+            calculation = computeInput(s);
+
+            System.out.println("Case " + caseCounter++ + ": " + calculation);
+        }
+    }
+
+    private String computeInput(String in){
+        Tokenizer tokenizer = new Tokenizer(in.split(" "));
+        Stack<Token> tokens = tokenizer.getTokenizedStack();
+
+        String calculation;
+        calculation = calculatePN(tokens);
+
+        return calculation;
     }
 
     /**
@@ -58,7 +68,7 @@ public class PolishNotation {
 
         while (!stack.isEmpty()) {
             Token t = stack.pop();
-            t.handle(operatorStack, operandStack);
+            t.handle(operatorStack, operandStack, outputStack);
         }
 
        return pNToString();
@@ -87,13 +97,14 @@ public class PolishNotation {
      * @param args
      */
     public static void main(String[] args) {
-       // new pnCalc.PolishNotation(System.in);
+       PolishNotation pn = new PolishNotation();
 
         try {
-            new PolishNotation(new FileInputStream(new File("testPN.txt")));
+            pn.readStreamInput(new FileInputStream(new File("testPN.txt")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
 
     }
 }

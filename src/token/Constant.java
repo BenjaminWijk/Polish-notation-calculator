@@ -1,5 +1,6 @@
 package token;
 
+import java.util.Deque;
 import java.util.Stack;
 
 public class Constant implements Operand {
@@ -14,7 +15,7 @@ public class Constant implements Operand {
     }
 
     @Override
-    public void handle(Stack<Operator> operatorStack, Stack<Operand> operandStack, Stack<Token> outputStack) {
+    public void handle(Stack<Operator> operatorStack, Stack<Operand> operandStack, Deque<Token> outputStack) {
         operandStack.push(this);
     }
 

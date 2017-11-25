@@ -1,5 +1,6 @@
 package token;
 
+import java.util.Deque;
 import java.util.Stack;
 
 public class Expression implements Token{
@@ -46,7 +47,7 @@ public class Expression implements Token{
     }
 
     @Override
-    public void handle(Stack<Operator> operatorStack, Stack<Operand> operandStack, Stack<Token> outputStack) {
+    public void handle(Stack<Operator> operatorStack, Stack<Operand> operandStack, Deque<Token> outputStack) {
         performOperation();
         if(simplifiedValue == null) {
             while (!operandStack.isEmpty())
