@@ -51,13 +51,13 @@ public class Expression implements Token{
     @Override
     public void handle(Stack<Operator> operatorStack, Stack<Operand> operandStack, Deque<Token> outputStack) {
         performOperation();
-        if(simplifiedValue == null) {
-            while (!operandStack.isEmpty())
+        if (simplifiedValue == null) {
+            while (!operandStack.isEmpty()) {
                 outputStack.push(operandStack.pop());
+            }
             outputStack.push(this);
-        }
-        else
+        } else {
             operandStack.push(new Constant(simplifiedValue));
-
+        }
     }
 }

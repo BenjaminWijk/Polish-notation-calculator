@@ -15,10 +15,12 @@ public class TokenRandomizer {
 
     public Operand generateOperand(){
         int r;
-        if(includeVariables)
+        if (includeVariables) {
             r = rand.nextInt(2);
-        else
+        }
+        else {
             r = 0;
+        }
 
         switch(r) {
             case 0:

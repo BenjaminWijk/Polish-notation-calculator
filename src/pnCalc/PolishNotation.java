@@ -81,7 +81,7 @@ public class PolishNotation {
 
         //If "last" part of expression resolved, pop operandstack
         if (!operandStack.isEmpty()) {
-            if(!outputStack.isEmpty()) {
+            if (!outputStack.isEmpty()) {
                 System.out.println("outputstack not empty");
                 return null;
             }

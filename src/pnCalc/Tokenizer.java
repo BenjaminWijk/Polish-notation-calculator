@@ -31,12 +31,15 @@ import java.util.Stack;
      * @return new Token with class and value depending on token type and input.
      */
     private Token getToken(String input) {
-        if (isOperator(input))
+        if (isOperator(input)) {
             return new Operator(input);
-        else if (isConstant(input))
+        }
+        else if (isConstant(input)) {
             return new Constant(Integer.parseInt(input));
-        else
+        }
+        else {
             return new Variable(input);
+        }
     }
 
     /**
@@ -58,10 +61,11 @@ import java.util.Stack;
     private boolean isConstant(String input) {
         try {
             int x = Integer.parseInt(input);
-            if(x >= -10 && x <= 10) {
+            if (x >= -10 && x <= 10) {
                 return true;
-            }else
+            }else {
                 return false;
+            }
         } catch (NumberFormatException e) {
             return false;
         }
