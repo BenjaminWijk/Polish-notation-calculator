@@ -81,18 +81,11 @@ public class PolishNotation {
 
         //If "last" part of expression resolved, pop operandstack
         if (!operandStack.isEmpty()) {
-            if (!outputStack.isEmpty()) {
-                System.out.println("outputstack not empty"); //REMOVE
-            }
-            System.out.println("Operand:"); //REMOVE
-            String s1 = operandStack.pop().toString(); //REMOVE/CHANGE
-            System.out.println(s1); //REMOVE
+            String s1 = operandStack.pop().toString();
             sj.add(s1);
         }
         while (!outputStack.isEmpty()) {
-            System.out.println("\nOutput:"); //REMOVE
-            String s2 = outputStack.pop().toString(); //REMOVE/CHANGE
-            System.out.println(s2); //REMOVE
+            String s2 = outputStack.pop().toString();
             sj.add(s2);
         }
 
@@ -151,16 +144,8 @@ public class PolishNotation {
      * @param args
      */
     public static void main(String[] args) {
-       PolishNotation pn = new PolishNotation();
-       Scanner sc = new Scanner(System.in);
-
-       while(true){
-           String s = sc.nextLine();
-           pn.readStringInput(s);
-           pn.printCases();
-
-
-
-       }
+        PolishNotation pn = new PolishNotation();
+        pn.readStreamInput(System.in);
+        pn.printCases();
     }
 }

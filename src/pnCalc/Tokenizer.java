@@ -1,6 +1,5 @@
 package pnCalc;
 
-
 import token.Constant;
 import token.Operator;
 import token.Token;
