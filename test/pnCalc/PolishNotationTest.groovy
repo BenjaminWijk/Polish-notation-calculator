@@ -32,6 +32,10 @@ class PolishNotationTest extends GroovyTestCase {
         pn.readStringInput("- * + 3 4 * 5 x - - 3 3 * 4 5")
         assertEquals("Case 1: - * 7 * 5 x -20", pn.getCasesAsString())
 
+        pn.readStringInput("* - + * x 5 + 3 4 - 5 5 * c x")
+        assertEquals("Case 1: * - + * x 5 7 0 * c x", pn.getCasesAsString())
+
+
     }
 
     void testPN(){

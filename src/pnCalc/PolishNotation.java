@@ -82,13 +82,18 @@ public class PolishNotation {
         //If "last" part of expression resolved, pop operandstack
         if (!operandStack.isEmpty()) {
             if (!outputStack.isEmpty()) {
-                System.out.println("outputstack not empty");
-                return null;
+                System.out.println("outputstack not empty"); //REMOVE
             }
-            sj.add(operandStack.pop().toString());
+            System.out.println("Operand:"); //REMOVE
+            String s1 = operandStack.pop().toString(); //REMOVE/CHANGE
+            System.out.println(s1); //REMOVE
+            sj.add(s1);
         }
         while (!outputStack.isEmpty()) {
-            sj.add(outputStack.pop().toString());
+            System.out.println("\nOutput:"); //REMOVE
+            String s2 = outputStack.pop().toString(); //REMOVE/CHANGE
+            System.out.println(s2); //REMOVE
+            sj.add(s2);
         }
 
         return sj.toString();
@@ -125,6 +130,22 @@ public class PolishNotation {
         return sj.toString();
     }
 
+    public List<String> getRawCases(){
+        return cases;
+    }
+
+    public Deque<Token> getOutputStack(){
+        return outputStack;
+    }
+
+    public Stack<Operand> getOperandStack(){
+        return operandStack;
+    }
+
+    public Stack<Operator> getOperatorStack() {
+        return operatorStack;
+    }
+
     /**
      * The commented code is just used for some lazy testing.
      * @param args
@@ -135,8 +156,8 @@ public class PolishNotation {
 
        while(true){
            String s = sc.nextLine();
-
-
+           pn.readStringInput(s);
+           pn.printCases();
 
 
 
