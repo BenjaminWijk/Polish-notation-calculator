@@ -52,6 +52,8 @@ public class Expression implements Token{
     public void handle(Stack<Operator> operatorStack, Stack<Operand> operandStack, Deque<Token> outputStack) {
         performOperation();
         if (simplifiedValue == null) {
+
+            //Ugly hack to reverse whatever is on operandStack before pushing to output
             Stack<Token> stack = new Stack<>();
             while (!operandStack.isEmpty()) {
                 stack.push(operandStack.pop());
@@ -59,6 +61,7 @@ public class Expression implements Token{
             while(!stack.isEmpty()){
                 outputStack.push(stack.pop());
             }
+
             outputStack.push(this);
         } else {
             operandStack.push(new Constant(simplifiedValue));
