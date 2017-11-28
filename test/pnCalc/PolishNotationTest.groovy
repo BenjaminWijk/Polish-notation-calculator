@@ -13,6 +13,7 @@ class PolishNotationTest extends GroovyTestCase {
         PolishNotation pn = new PolishNotation()
         String [] sampleInput =  new String[3]
 
+        //SampleInput: test cases given to me alongside this task
         sampleInput[0] = "+ 3 4"
         sampleInput[1] = "- x x"
         sampleInput[2] = "* - 6 + x -6 - - 9 6 * 0 c"
@@ -42,6 +43,7 @@ class PolishNotationTest extends GroovyTestCase {
      */
     @Ignore
     void testPN(){
+        /*
         PolishNotation pn = new PolishNotation()
         String [] cases = new String[5]
 
@@ -50,9 +52,8 @@ class PolishNotationTest extends GroovyTestCase {
                 cases[j] = generateValidPN(true)
             }
             pn.readString(cases)
-        }
+        }*/
     }
-
 
     /**
      * Generates an expression for PolishNotation to run.
@@ -115,6 +116,7 @@ class PolishNotationTest extends GroovyTestCase {
 
     /**
      * Test if generation generates a resolvable expression.
+     * Currently relies on this calculator, should probably not be the case.
      */
     void testGenerateValidPN(){
         PolishNotation pn = new PolishNotation();
@@ -135,6 +137,9 @@ class PolishNotationTest extends GroovyTestCase {
         }
     }
 
+    /**
+     * Checks that my method can differentiate between valid and invalid expressions
+     */
     void testCheckValidPN(){
 
         assertEquals(true, checkValidPN("+ 3 4"))
@@ -143,12 +148,13 @@ class PolishNotationTest extends GroovyTestCase {
 
         assertEquals(false, checkValidPN("- - 3 4"))
         assertEquals(false, checkValidPN("- - 4"))
+
     }
 
     /**
      * Checks the validity by going through the expression and checking if the expression holds up using a counter
-     * @param s
-     * @return
+     * @param s expression to be checked. Like all expressions here, tokens need to be separataed by whitespace.
+     * @return true if valid, otherwise false
      */
     boolean checkValidPN(String s){
         int counter = 0;
@@ -178,6 +184,4 @@ class PolishNotationTest extends GroovyTestCase {
             return true;
         return false;
     }
-
-
 }
